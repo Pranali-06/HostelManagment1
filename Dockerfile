@@ -1,21 +1,13 @@
-
-FROM maven:3.9.0-eclipse-temurin-17 AS build
-
+FROM maven:3.8.8-openjdk-17 AS build
 WORKDIR /app
-
 COPY pom.xml .
-RUN mvn dependency:go-offline
-
 COPY src ./src
-
-RUN mvn clean package 
+RUN mvn clean package
 
 FROM eclipse-temurin:17-jdk-alpine
-
 WORKDIR /app
+COPY --from=build /app/target/*.war app.war
 
-COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8000
 
-EXPOSE 8080
-
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-war", "app.war"]
