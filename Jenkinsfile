@@ -34,7 +34,7 @@ pipeline {
         echo 'Running new container...'
         sh '''
         docker rm -f hotel_container || true
-        docker run -d --name hotel_container -p 8080:8080 hotel-management-app
+        docker run -d --name hotel_container -p 8081:8080 hotel-management-app
         '''
       }
     }
