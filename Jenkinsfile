@@ -29,13 +29,17 @@ pipeline {
             }
         }
 
-        
         stage('Run Container') {
-            steps {
-                echo 'Running new container...'
-                sh "docker run -d --name hotel_container -p 8080:8080 hotel-management-app"
-            }
-        }
+    steps {
+        echo 'Running new container...'
+        sh '''
+        docker rm -f hotel_container || true
+        docker run -d --name hotel_container -p 8080:8080 hotel-management-app
+        '''
+      }
+    }
+
+
     }
 
     post {
