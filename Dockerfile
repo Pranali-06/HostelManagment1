@@ -8,6 +8,6 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.war app.war
 
-EXPOSE 8081
+EXPOSE 8082
 
 CMD ["java", "-war", "app.war"]
