@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "hotel-management-app"
-        CONTAINER_NAME = "hotel_container"
+        IMAGE_NAME = "hostel-managment-app"
+        CONTAINER_NAME = "hostel_container"
         APP_PORT = "8082"
     }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t hotel-management-app ."
+                sh "docker build -t hostel-managment-app ."
             }
         }
 
@@ -34,7 +34,7 @@ pipeline {
         echo 'Running new container...'
         sh '''
         docker rm -f hotel_container || true
-        docker run -d --name hotel_container -p 8082:8082 hotel-management-app
+        docker run -d --name hostel_container -p 8082:8082 hostel-managment-app
         '''
       }
     }
