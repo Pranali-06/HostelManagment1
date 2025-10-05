@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "hotel-management-app"
         CONTAINER_NAME = "hotel_container"
-        APP_PORT = "8080"
+        APP_PORT = "8081"
     }
 
     stages {
