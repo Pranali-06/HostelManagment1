@@ -10,4 +10,4 @@ COPY --from=build /app/target/*.war app.war
 
 EXPOSE 8081
 
-CMD ["java", "-jar", "app.war"]
+CMD ["java", "-war", "app.war"]
