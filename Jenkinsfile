@@ -4,7 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME = "hostel-managment-app"
         CONTAINER_NAME = "hostel_container"
-        APP_PORT = "8081"
+        HOST_PORT = "8081"
+        CONTAINER_PORT = "8080"
     }
 
     stages {
@@ -25,27 +26,24 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t hostel-managment-app ."
+                sh "docker build -t ${IMAGE_NAME} ."
             }
         }
 
         stage('Run Container') {
-    steps {
-        echo 'Running new container...'
-        sh '''
-        docker rm -f hotel_container || true
-        docker run -d --name hostel_container -p 8081:8081 hostel-managment-app
-        '''
-      }
-    }
+            steps {
+                echo 'Stopping old container if exists...'
+                sh "docker rm -f ${CONTAINER_NAME} || true"
 
-
+                echo 'Running new container...'
+                sh "docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME}"
+            }
+        }
     }
 
     post {
         success {
-            echo 'Deployment successful!'
+            echo 'Deployment successful! Your app should be reachable at http://<public-ip>:8081'
         }
-      
     }
 }
