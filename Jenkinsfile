@@ -26,24 +26,16 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t ${IMAGE_NAME} ."
+                sh "docker build -t hostel-managment-app ."
             }
         }
 
-        stage('Run Container') {
-            steps {
-                echo 'Stopping old container if exists...'
-                sh "docker rm -f ${CONTAINER_NAME} || true"
-
-                echo 'Running new container...'
-                sh "docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:${CONTAINER_PORT} ${IMAGE_NAME}"
-            }
-        }
+       
     }
 
     post {
         success {
-            echo 'Deployment successful! Your app should be reachable at http://<public-ip>:8081'
+            echo 'Deployment successful! Your app should be reachable at http://34.224.167.82:8081'
         }
     }
 }
