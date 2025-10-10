@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "hostel-managment-app"
         CONTAINER_NAME = "hostel_container"
-        APP_PORT = "9090"
+        APP_PORT = "8081"
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
         echo 'Running new container...'
         sh '''
         docker rm -f hotel_container || true
-        docker run -d --name hostel_container -p 9090:8080 hostel-managment-app
+        docker run -d --name hostel_container -p 8081:8081 hostel-managment-app
         '''
       }
     }
