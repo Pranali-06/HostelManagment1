@@ -8,6 +8,6 @@ RUN mvn clean package
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY target/HostelManagementSystem.war app.war
-EXPOSE 8081
+EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "app.war"]
 
