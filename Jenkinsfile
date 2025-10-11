@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "hostel-management-app"
         CONTAINER_NAME = "hostel_container"
-        HOST_PORT = "8081"
+        HOST_PORT = "8080"
         CONTAINER_PORT = "8080"
     }
 
@@ -26,7 +26,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t hostel-managment-app ."
+                sh "docker build -t hostel-management-app ."
             }
         }
 
