@@ -5,9 +5,11 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package 
 
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY target/HostelManagementSystem.war app.war
-EXPOSE 8082
-ENTRYPOINT ["java", "-jar", "app.war"]
+FROM tomcat:10.1-jdk17
+RUN rm -rf usr/local/tomcat/webapps/ROOT
+
+COPY target/HostelManagementSystem.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
 
