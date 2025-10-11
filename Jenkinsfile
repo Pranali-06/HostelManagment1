@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "hostel-managment-app"
-        CONTAINER_NAME = "hostel_managment"
-        HOST_PORT = "8082"
+        IMAGE_NAME = "hostel-management-app"
+        CONTAINER_NAME = "hostel_container"
+        HOST_PORT = "8081"
         CONTAINER_PORT = "8080"
     }
 
@@ -35,7 +35,7 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful! Your app should be reachable at http://54.163.203.125:8082'
+            echo 'Deployment successful! Your app should be reachable at http://54.163.203.125:8081'
         }
     }
 }
