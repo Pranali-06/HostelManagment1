@@ -35,7 +35,7 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful! Your app should be reachable at http://54.163.203.125:8081'
+            echo 'Deployment successful! http://54.163.203.125:8081'
         }
     }
 }
